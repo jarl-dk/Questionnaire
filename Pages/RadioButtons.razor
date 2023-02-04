@@ -1,0 +1,32 @@
+@page "/radiobuttons"
+
+<PageTitle>Radio buttons</PageTitle>
+
+<h1>Radios buttons</h1>
+
+<p role="status">Favorite dish: @_radioModel.SelectedDish</p>
+
+<EditForm Model="_radioModel">
+    <InputRadioGroup @bind-Value="@_radioModel.SelectedDish">
+        Dishes:
+        <br>
+        @foreach (var dish in Dishes)
+        {
+            <InputRadio Value="dish" />
+            @dish
+            <br>
+        }
+    </InputRadioGroup>
+</EditForm>
+
+@code {
+
+   List<String> Dishes = new List<string> { "Boller i karry", "Hjerter i flødesoves", "Burger" };
+
+   FormClass _radioModel = new FormClass();
+
+   class FormClass
+    {
+      public  String SelectedDish { get; set; } = "Burger";
+    }
+}
